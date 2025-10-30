@@ -1,87 +1,116 @@
-# System Architecture
+# 🏗️ DevOps Simulator - Unified System Architecture (v4.0)
 
-## Overview
-DevOps Simulator follows a microservices architecture designed for high availability and scalability.
+## 🧭 Overview
+DevOps Simulator follows a **microservices-based, event-driven architecture** designed for **scalability**, **high availability**, and **intelligent automation**.  
+It supports **three modes of operation**:
+- 🏢 **Production** — Stable, high-availability environment  
+- 💻 **Development** — Local development with hot reload and debugging  
+- 🤖 **Experimental** — AI-powered, multi-cloud deployment with predictive scaling  
 
+---
 
-## Components
-
-### 1. Application Server
-- **Technology**: Node.js + Express
-- **Port**: 8080
-- **Scaling**: Horizontal auto-scaling enabled
-
-### 2. Database Layer
-- **Database**: PostgreSQL 14
-- **Configuration**: Master-slave replication
-- **Backup**: Daily automated backups
-
-### 3. Monitoring System
-- **Tool**: Prometheus + Grafana
-- **Metrics**: CPU, Memory, Disk, Network
-- **Alerts**: Email notifications for critical issues
-
-## Deployment Strategy
-- **Method**: Rolling updates
-- **Zero-downtime**: Yes
-- **Rollback**: Automated on failure
-
-## Security
-- SSL/TLS encryption
-- Database connection encryption
-- Regular security audits
-**Development Version**: This document describes the development architecture with experimental features.
-
-## Components
+## ⚙️ Core Components
 
 ### 1. Application Server
-- **Technology**: Node.js + Express (with hot reload)
-- **Port**: 3000 (development)
-- **Scaling**: Manual (single instance for development)
-- **Debug**: Chrome DevTools debugger on port 9229
+| Environment | Technology | Port(s) | Scaling | Features |
+|--------------|-------------|----------|----------|-----------|
+| **Production** | Node.js + Express | 8080 | Horizontal auto-scaling | Load-balanced microservices |
+| **Development** | Node.js + Express (Hot Reload) | 3000 | Manual (single instance) | Chrome DevTools debugging on port 9229 |
+| **Experimental (AI)** | Node.js + Express + TensorFlow.js | 9000–9002 | AI-powered predictive scaling | Real-time ML inference + Kafka event streaming |
+
+---
 
 ### 2. Database Layer
-- **Database**: PostgreSQL 14 (local instance)
-- **Configuration**: Single instance (no replication in dev)
-- **Backup**: Manual backups only
-- **Seeding**: Auto-seed with test data on startup
+| Environment | Type | Replication | Backup | Notes |
+|--------------|------|--------------|---------|-------|
+| **Production** | PostgreSQL 14 | Master–slave replication | Daily automated | Encrypted connections |
+| **Development** | PostgreSQL (local) | None (single instance) | Manual | Auto-seeds test data |
+| **Experimental** | PostgreSQL Cluster (5 nodes) + Redis | Multi-master | Continuous + Geo-redundant | ML-optimized query caching |
 
-### 3. Monitoring System
-- **Tool**: Basic console logging + Prometheus (optional)
-- **Metrics**: CPU, Memory, Disk, Network, Build time
-- **Alerts**: Console warnings (no email in dev)
-- **Dashboard**: In-development web dashboard
+---
 
-### 4. NEW: Container Orchestration
-- **Tool**: Docker Compose (local)
-- **Services**: App, Database, Redis cache
-- **Volume Mounts**: Code directory for hot reload
+### 3. Monitoring & Observability
+| Environment | Tools | Metrics | Alerts |
+|--------------|--------|----------|--------|
+| **Production** | Prometheus + Grafana | CPU, Memory, Disk, Network | Email notifications |
+| **Development** | Console logs + optional Prometheus | CPU, Memory, Disk, Build time | Console warnings only |
+| **Experimental** | Prometheus + Thanos + AI Log Analysis (ELK) | Full-stack telemetry | AI-based anomaly detection |
 
-### 5. NEW: Authentication System (Beta)
-- **Method**: OAuth2 + JWT
-- **Providers**: Google, GitHub (for testing)
-- **Sessions**: Redis-based session storage
+---
 
-## Deployment Strategy
-- **Method**: Docker Compose hot reload
-- **Zero-downtime**: Not applicable (dev environment)
-- **Rollback**: Git checkout previous commit
+### 4. Containerization & Orchestration
+| Environment | Tool | Deployment |
+|--------------|------|-------------|
+| **Production** | Kubernetes | Rolling updates with zero downtime |
+| **Development** | Docker Compose | Local containers with volume mounts for hot reload |
+| **Experimental** | Multi-cloud Kubernetes (AWS, Azure, GCP, DigitalOcean) | Global anycast load balancing + cross-cloud failover |
 
-## Development Workflow
-1. Make code changes
-2. Auto-reload triggers rebuild
-3. Run unit tests
-4. Check console logs
-5. Commit when ready
+---
 
-## Security
-- SSL/TLS disabled for local development
-- Database credentials in plain text (dev only)
-- CORS enabled for all origins
-- Debug endpoints exposed
+### 5. AI/ML Integration (Experimental Only)
+- **Frameworks**: TensorFlow, PyTorch, Scikit-learn  
+- **Models**:
+  - Anomaly detection → LSTM neural network  
+  - Load prediction → XGBoost  
+  - Auto-scaling optimization → Reinforcement Learning  
+- **Capabilities**:
+  - Predictive scaling (5–10 min ahead)  
+  - AI-based log anomaly alerts  
+  - Continuous online training with live data  
 
-## Experimental Features
-⚠️ **Warning**: The following features are experimental:
-- Multi-cloud deployment
-- AI-powered log analysis
-- Automatic rollback on anomaly detection
+---
+
+### 6. Authentication System (Beta)
+| Feature | Details |
+|----------|----------|
+| **Method** | OAuth2 + JWT |
+| **Providers** | Google, GitHub |
+| **Session Storage** | Redis |
+| **Mode** | Enabled in Development & Experimental builds |
+
+---
+
+## 🚀 Deployment Strategy
+| Environment | Method | Zero-Downtime | Rollback |
+|--------------|----------|----------------|-----------|
+| **Production** | Rolling updates (Kubernetes) | ✅ Yes | Automated on failure |
+| **Development** | Docker Compose + Hot Reload | ⚙️ Not applicable | Git checkout previous commit |
+| **Experimental** | AI-Driven Canary Deployment (Multi-cloud) | ✅ Yes | AI-triggered rollback on anomalies |
+
+---
+
+## 🔐 Security Overview
+- SSL/TLS enforced (disabled in development)
+- Encrypted DB connections
+- Regular vulnerability scans
+- Role-based access control (RBAC)
+- **Development Mode:**  
+  - Plaintext credentials (local only)  
+  - CORS enabled for all origins  
+  - Debug endpoints exposed  
+
+---
+
+## 🧪 Experimental Features (Use with Caution)
+⚠️ The following are **under testing** and may be unstable:
+- AI-powered log analysis and predictive auto-scaling  
+- Automatic rollback on anomaly detection  
+- Multi-cloud orchestration  
+- ML-driven query optimization  
+
+---
+
+## 🧰 Development Workflow
+1. Edit code and save changes  
+2. Hot reload triggers rebuild  
+3. Run unit tests  
+4. Observe console and monitoring output  
+5. Commit and push changes  
+
+---
+
+✅ **Summary**
+This unified architecture integrates:
+- Stable **production infrastructure**
+- Flexible **developer workflow**
+- Cutting-edge **AI and multi-cloud innovation**
